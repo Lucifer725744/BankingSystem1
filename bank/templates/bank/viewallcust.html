@@ -1,0 +1,28 @@
+{% extends 'bank/basic.html' %}
+{% block title %} Customers {% endblock %}
+
+{% block body %}
+
+            <!-- THis is Table Format -->
+      <table class="table table-striped">
+          <thead>
+            <tr>
+              <th scope="col">Sr.No</th>
+              <th scope="col">Name</th>
+              <th scope="col">Email</th>
+              <th scope="col">Balance</th>
+          </thead>
+          <tbody>
+          {% for i in customer %}
+            <tr>
+                <th scope="col">{{forloop.counter}}</th>
+                <th scope="col">{{i.cust_name}}</th>
+                <th scope="col">{{i.cust_email}}</th>
+                <th scope="col">{{i.cust_bal}}</th>
+
+            </tr>
+          {% endfor %}
+          </tbody>
+      </table>
+{% endblock %}
+

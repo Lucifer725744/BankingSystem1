@@ -1,0 +1,36 @@
+{% extends 'bank/basic.html' %}
+{% block title %} History {% endblock %}
+
+{% block body %}
+
+          <!-- THis is Table Format -->
+      <table class="table table-striped">
+          <thead>
+            <tr>
+              <th scope="col">Sr.No</th>
+              <th scope="col">Transaction Id</th>
+              <th scope="col">Transfered By</th>
+              <th scope="col">Transfered To</th>
+              <th scope="col">Amount(in Rs)</th>
+            </tr>
+          </thead>
+          <tbody>
+          {% for i in transfer %}
+            <tr>
+                <th scope="col">{{forloop.counter}}</th>
+                <th scope="col">{{i.trans_id}}</th>
+                {% for j in customer %}
+                    {%ifequal j.cust_id i.trans_from_id %}
+                        <th scope="col">{{j.cust_name}}</th>
+                    {% endifequal %}
+                    {%ifequal j.cust_id i.trans_to_id %}
+                        <th scope="col">{{j.cust_name}}</th>
+                    {% endifequal %}
+                {% endfor %}
+                <th scope="col">{{i.trans_amt}}</th>
+
+            </tr>
+          {% endfor %}
+          </tbody>
+      </table>
+{% endblock %}

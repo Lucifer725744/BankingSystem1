@@ -1,0 +1,52 @@
+{% extends 'bank/basic.html' %}
+
+{% block title %} Transfer {% endblock %}
+
+{% block body %}
+
+        <div class="container">
+
+                      <form action="{% url 'makechange' %}" method='POST'>
+                          {% csrf_token %}
+
+                          <label  style='font-size: 20px;'>Transferring from</label>
+                          <div class='form-row'>
+                              <div class='col-lg-4 col-md-8 col-sm-12 mb-3 mx-auto'>
+                                  <label >Customer Name</label>
+                                    <select class='form-control' name='from_cust' required>
+                                          <option selected="selected" disabled>Select Name on Account</option>
+                                          {% for i in customer %}
+                                          <option value={{i.cust_id}}>{{i.cust_name}}</option>
+                                          {% endfor %}
+                                    </select>
+                              </div>
+                          </div>
+                          <br>
+
+                          <label  style='font-size: 20px;'>Transfer to</label>
+                          <div class='form-row'>
+                              <div class='col-lg-4 col-md-8 col-sm-12 mb-3 mx-auto'>
+                                  <label >Customer Name</label>
+                                  <select class='form-control' name='to_cust' required>
+                                      <option selected="selected" disabled>Select Name on Account</option>
+                                      {% for i in customer %}
+                                      <option value={{i.cust_id}}>{{i.cust_name}}</option>
+                                      {% endfor %}
+                                  </select>
+                              </div>
+                              <div class='col-lg-4 col-md-8 col-sm-12 mb-3 mx-auto'>
+                                  <label >Transfer Amount</label>
+                                  <input type='number' class='form-control' name='amt' placeholder='Amount' required>
+                              </div>
+                          </div>
+
+                          <br>
+
+                          <center>
+                              <button type='submit' class='btn btn-primary' name='transfer'>Transfer Now</button>
+                          </center>
+                      </form>
+        </div>
+  </section>
+
+{% endblock %}
